@@ -8,5 +8,5 @@ python3 -m venv venv
 
 pip install matplotlib
 pip install pandas
-
+pip install scipy
 

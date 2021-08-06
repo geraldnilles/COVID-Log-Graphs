@@ -7,4 +7,7 @@ git pull
 
 cd ..
 
+. venv/bin/activate
+
+
 
