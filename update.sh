@@ -11,4 +11,7 @@ cd ..
 
 ./plot.py
 
+git add -A
+git commit -m "Automatic Update of Graphs"
+
 
