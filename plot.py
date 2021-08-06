@@ -96,7 +96,7 @@ def plot_data(df,name):
     plt.grid(True,"both","y")
 
 
-    plt.savefig("graphs/"+name+".svg")
+    plt.savefig("graphs/"+name+".svg",metadata={'Date': None})
 
     plt.clf()
     plt.close()
