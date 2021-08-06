@@ -9,5 +9,6 @@ cd ..
 
 . venv/bin/activate
 
+./plot.py
 
 
