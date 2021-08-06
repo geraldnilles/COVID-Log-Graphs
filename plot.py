@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+import matplotlib as mpl
 
+mpl.rcParams['svg.hashsalt'] = 42
 
 
 # Convert Cases to numpy array for easier manipulation
@@ -61,6 +63,10 @@ def calc_stats(df):
 
     return df
 
+def list_states():
+    df = pd.read_csv("covid-19-data/us-states.csv")
+    return sorted(df["state"].unique())
+
 def get_us_data():
     df = pd.read_csv("covid-19-data/us.csv")
     df = clean_dates(df)
@@ -80,6 +86,8 @@ def get_state_data(state):
 
 def plot_data(df,name):
 
+    print("Plotting",name)
+
     df.plot(x="Date", y=["Avg Cases", "Avg Deaths"], logy=True, grid=True, figsize=(11,8.5))
 
     plt.fill_between(df["Date"].to_numpy(),df["90%ile Cases"],df["30%ile Cases"],color=[(0.5,0.5,1,0.5)])
@@ -90,9 +98,12 @@ def plot_data(df,name):
 
     plt.savefig("graphs/"+name+".svg")
 
+    plt.clf()
+    plt.close()
 
-plot_data(get_us_data(),"us")
 
-plot_data(get_state_data("California"),"California")
-#plot_data(get_state_data("Florida"))
+plot_data(get_us_data(),"USA")
+
+for state in list_states():
+    plot_data(get_state_data(state),state)
 
