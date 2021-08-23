@@ -84,6 +84,21 @@ def get_state_data(state):
 
     return calc_stats(df)
 
+def get_county_data(county,state):
+    df = pd.read_csv("covid-19-data/us-counties.csv")
+    df = clean_dates(df)
+
+    #date,county,state,fips,cases,deaths
+
+    df = df[df["county"].isin([county])]
+    df = df[df["state"].isin([state])]
+
+    df  = df.drop(["state"],axis=1)
+    df  = df.drop(["county"],axis=1)
+    df  = df.drop(["fips"],axis=1)
+
+    return calc_stats(df)
+
 def plot_data(df,name):
 
     print("Plotting",name)
@@ -102,8 +117,11 @@ def plot_data(df,name):
     plt.close()
 
 
+
 plot_data(get_us_data(),"USA")
 
 for state in list_states():
     plot_data(get_state_data(state),state)
+
+plot_data(get_county_data("Clark","Nevada"),"Vegas")
 
