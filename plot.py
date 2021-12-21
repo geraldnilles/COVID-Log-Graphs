@@ -125,4 +125,5 @@ for state in list_states():
 
 plot_data(get_county_data("Clark","Nevada"),"Vegas")
 plot_data(get_county_data("New York City","New York"),"NYC")
+plot_data(get_county_data("Los Angeles","California"),"LA")
 
